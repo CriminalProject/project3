@@ -16,5 +16,6 @@ class OptimizationData(models.Model):
     productVariety = models.CharField(max_length = 50)
     salesAmount = models.IntegerField()
     
-    
-    
+class FinalData(models.Model):
+    date = models.DateField();
+    salesAmount = models.IntegerField()
