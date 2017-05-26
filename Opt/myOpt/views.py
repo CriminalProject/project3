@@ -141,7 +141,7 @@ def readFromDB(request):
      for obj in opt2:
         if totalBaseCount < 258:
             total += obj.salesAmount
-        if totalBaseCount < 317:
+        if totalBaseCount < 258:
             if totalBaseCount == 0:
                 patternArray[monthCount] = obj.salesAmount
             else:
@@ -166,7 +166,7 @@ def readFromDB(request):
             monthTurn = 0
         totalBaseCount+=1
      for i in range(28):
-         patternArray[i] = patternArray[i]/317
+         patternArray[i] = patternArray[i]/258
      lastMonthAverage = totalLastMonth/31
      totalAverage = total/258
      predictCount = 0
@@ -176,12 +176,12 @@ def readFromDB(request):
      while predictCount < 28:
          if predictCount == 0:
              temp = (baseArray[predictCount].salesAmount/5*3 + patternArray[predictCount]/5*2) + lastMonthAverage - totalAverage
-             remaining = (baseArray[predictCount].salesAmount/5*3 + patternArray[predictCount]/5*2) - predictAverage
+             remaining = ((baseArray[predictCount].salesAmount/5*3 + patternArray[predictCount]/5*2) - predictAverage)/4
              
          else:
-             if remaining > 1:
+             if remaining != 0:
                 temp = (baseArray[predictCount].salesAmount/5*3 + patternArray[predictCount]/5*2) - remaining + lastMonthAverage - totalAverage
-                remaining = (baseArray[predictCount].salesAmount/5*3 + patternArray[predictCount]/5*2) - predictAverage
+                remaining = ((baseArray[predictCount].salesAmount/5*3 + patternArray[predictCount]/5*2) - predictAverage)/4
              else:
                 temp = (baseArray[predictCount].salesAmount/5*3 + patternArray[predictCount]/5*2) + lastMonthAverage - totalAverage
          
