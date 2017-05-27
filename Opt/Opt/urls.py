@@ -20,4 +20,5 @@ from myOpt import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.readAndWriteData),
+    url(r'^read/',views.readFromDB),
 ]
